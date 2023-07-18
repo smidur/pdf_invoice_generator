@@ -11,13 +11,13 @@ for filepath in filepaths:
 
     filename = Path(filepath).stem
     invoice_num, date = filename.split("-")
-
+    # add invoice number
     pdf.set_font(family="Times", size=20, style="B")
     pdf.cell(w=50, h=8, txt=f"Invoice #{invoice_num}", ln=1)
-
+    # add date
     pdf.set_font(family="Times", size=20, style="B")
     pdf.cell(w=50, h=8, txt=f"Date {date}", ln=1)
-
+    # add a space between the tables
     pdf.cell(w=0, h=10, ln=1)
 
     df = pd.read_excel(filepath, sheet_name="Sheet 1")
@@ -54,6 +54,7 @@ for filepath in filepaths:
     pdf.cell(w=30, h=8, txt="Grand Total", border=1)
     pdf.cell(w=30, h=8, txt=str(total_sum), border=1, ln=1)
 
+    # add space between the tables
     pdf.cell(w=0, h=10, ln=1)
 
     # add total sum sentence
